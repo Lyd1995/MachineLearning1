@@ -22,10 +22,11 @@ def main():
     for i in range(NUM_TRAIN):
         z = np.dot(w, X[i]) + b  # z = wx + b
         a = 1/(1 + math.exp(-z))  # 计算预测值
+        db = db + dz
         dz = a - Y[i][0]  # dz 表示 dJ/dz
         for j in range(NUM_CHARACTER):
             dw[j] = dw[j] + X[i][j] * dz
-            db = db + dz
+            
 
     db = db / NUM_TRAIN
     b = b - alpha * db
